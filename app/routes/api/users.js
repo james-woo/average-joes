@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require('app/models/user')
+var User = require('../../../app/models/user')
 var passport = require('passport');
 
 // users index page
