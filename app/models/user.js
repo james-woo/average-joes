@@ -1,4 +1,4 @@
-var mongoose = require('app/models/mongoose');
+var mongoose = require('../../app/models/mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var userSchema = mongoose.Schema({
