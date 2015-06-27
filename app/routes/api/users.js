@@ -38,10 +38,11 @@ router.post('/', function(req, res, next){
     if(err){
       res.json(err);
     }
-
-    passport.authenticate('local')(req, res, function(){
-      res.json({success: true});
-    });
+    else{
+      passport.authenticate('local')(req, res, function(){
+        res.json({success: true});
+      });
+    }
   });
 });
 
