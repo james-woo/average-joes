@@ -14,6 +14,10 @@ angular.module('userService', [])
     return $http.post('/api/users/', user);
   };
 
+  factory.update = function(originalUsername, updatedUser) {
+    return $http.post('/api/users/' + originalUsername, updatedUser);
+  };
+
   factory.delete = function(username) {
     return $http.delete('/api/users/' + username);
   };
