@@ -1,0 +1,12 @@
+div.page-header.text-center
+  h3 Editing {{userCtrl.originalUser.username}}
+
+div.text-center
+    form(ng-submit="userCtrl.submit()").centred-form
+      div.form-group
+        input(type="text" required placeholder="Username" ng-model="userCtrl.updatedUser.username").form-control
+      button(type="submit").btn.btn-default.submit-button.
+        Submit
+
+  div(ng-model="userCtrl.success")
+    {{userCtrl.success}}

@@ -23,6 +23,12 @@ angular.module('app.routes', ['ngRoute'])
     controllerAs: 'userCtrl'
   })
 
+  .when('/users/:username/edit', {
+    templateUrl: 'partials/users/edit.jade',
+    controller: 'userEditController',
+    controllerAs: 'userCtrl'
+  })
+
   .when('/new_user', {
     templateUrl: 'partials/users/new.jade',
     controller: 'userNewController',

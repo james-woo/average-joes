@@ -76,4 +76,36 @@ router.delete('/:username', function(req, res, next){
   });
 });
 
+// Update the user
+router.post('/:username', function(req, res, next){
+  var username = req.params.username;
+
+  // permissions checking can go here
+
+  User.findOne({username: username}, function(err, user){
+    if(err){
+      res.send(err);
+    }
+    else{
+      if(!user){
+        // the given user does not exist
+        res.status(404).send();
+      }
+      else{
+        if(req.body.username) {
+          user.username = req.body.username;
+        }
+        user.save(function(err){
+          if(err){
+            res.send(err);
+          }
+          else{
+            res.status(200).json({updatedUser: user});
+          }
+        });
+      }
+    }
+  });
+});
+
 module.exports = router;

@@ -41,6 +41,36 @@ userControllers.controller('userNewController', function($http, User) {
   };
 });
 
+userControllers.controller('userEditController', function($http, User, $routeParams, $location) {
+  var vm = this;
+  vm.success = "";
+
+  var originalUsername = $routeParams.username;
+
+  User.get(originalUsername)
+  .success(function(data, status, headers, config){
+    vm.originalUser = data.user;
+  })
+  .error(function(data, status, headers, config){
+    $location.path("/"); // redirect if the user cannot be found
+  });
+
+  vm.updatedUser = {
+    username: ""
+  };
+
+  vm.submit = function(){
+    User.update(vm.originalUser.username, vm.updatedUser)
+    .success(function(data, status, headers, config){
+      vm.success = "User updated successfully."
+      $location.path("/users/" + data.updatedUser.username);
+    })
+    .error(function(data, status, headers, config){
+      vm.success = "Unable to update user."
+    });
+  };
+});
+
 userControllers.controller('userDeleteController', function($http, User, CurrentUser, $location) {
   var vm = this;
   vm.success = "";
