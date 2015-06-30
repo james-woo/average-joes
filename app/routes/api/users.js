@@ -61,7 +61,7 @@ router.delete('/:username', function(req, res, next){
         res.status(404).send();
       }
       else{
-        if(req.user.username == user.username){
+        if(req.user && req.user.username == user.username){
           // The current user has been deleted. Log them out.
           req.logout();
           res.status(200);
