@@ -1,5 +1,91 @@
-div.page-header.text-center
-  h3 Welcome to Average Joe's Gym
+doctype html(lang='en')
+head
+    meta(charset='utf-8')    
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
 
-div.text-center
-  img(src="images/main_logo.jpg").main-logo
+    title Average Joe's
+    // Bootstrap Core CSS
+    link(href='../../../../stylesheets/bootstrap.min.css', rel='stylesheet')
+    // Custom CSS
+    link(href='../../../../stylesheets/business-frontpage.css', rel='stylesheet')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      |         
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
+    
+    // Image Background Page Header
+    // Note: The background image is set within the business-casual.css file.
+    header.business-header
+      .container
+
+    // Page Content
+    .container
+      hr
+      .row
+        .col-sm-4
+          h2 Club Features    
+          p
+            | Our club has everything you need to achieve your fitness goals and passions.
+          p
+            a.btn.btn-default.btn-lg(href='#') Make a booking &raquo;
+        .col-sm-4
+          h2 Operating Hours   
+          p	Sunday 10am - 8pm
+          p Monday 8am - 12am
+          p	Tuesday 8am - 12am
+          p Wednesday 8am - 12am
+          p Thursday 8am - 12am
+          p Friday 8am - 12 am
+          p Saturday 8am - 12am
+        .col-sm-4
+          h2 Contact Us       
+          address
+            strong Average Joe's       
+            br
+            | 1975 Bee Street Victoria BC 
+            br
+            | Victora BC V8R 5E6        
+            br
+          address
+            abbr(title='Phone') P:
+            | (250) 595-7946  
+            br      
+            abbr(title='Email') E:
+            a(href='mailto:#') info@averagejoes.ca
+      // /.row
+      hr
+      .row
+        .col-sm-4
+          img.img-circle.img-responsive.img-center(src='../../../../images/amenities.jpg', alt='')
+          h2 Amenities      
+          p
+            | At Average Joe's club, we have everything you need to achieve your fitness goals and passions.      
+        .col-sm-4
+          img.img-circle.img-responsive.img-center(src='../../../../images/personal_training.jpg', alt='')          
+          h2 Personal Training
+          p
+            | Whether you’re getting started, training for a milestone, challenge or your own personal goals, we’ve got a Personal Training program that will work for you.
+        .col-sm-4
+          img.img-circle.img-responsive.img-center(src='../../../../images/health_specialists.jpg', alt='')   
+          h2 Health Specialists       
+          p
+            | We offer many services to ensure your physical and mental health are in peak condition.
+      // /.row
+      hr
+      // Footer
+      footer
+        .row
+          .col-lg-12
+            p Copyright &copy; Average Joe's
+        // /.row
+    // /.container
+    // jQuery
+    script(src='../../../../js/jquery.js')
+    // Bootstrap Core JavaScript
+    script(src='../../../../js/bootstrap.min.js')
