@@ -12,6 +12,7 @@ userControllers.controller('userIndexController', function($http, User) {
 userControllers.controller('userShowController', function($http, $routeParams, User) {
   var vm = this;
   var username = $routeParams.username;
+  vm.userEditUrl = "/users/" + username + "/edit"
 
   User.get(username)
   .success(function(data, status, headers, config){
