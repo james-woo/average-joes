@@ -33,7 +33,7 @@ router.get('/:username', function(req, res, next){
 
 // create new user and authenticate with passport
 router.post('/', function(req, res, next){
-  User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email}), req.body.password, function(err, user){
 
     if(err){
       res.json(err);
