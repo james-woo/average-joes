@@ -1,5 +1,6 @@
 div.page-header.text-center
   h3 Create a new user
+  p All fields are required to create an account.
 
 div.text-center
     form(ng-submit="userCtrl.submit()").centred-form
@@ -14,7 +15,7 @@ div.text-center
       div.form-group
         input(type="email" required placeholder="Email" ng-model="userCtrl.user.email").form-control
       button(type="submit").btn.btn-default.submit-button.
-        Submit
+        Create an Account
 
   div(ng-model="userCtrl.success")
     {{userCtrl.success}}
