@@ -35,6 +35,12 @@ angular.module('app.routes', ['ngRoute'])
     controllerAs: 'userCtrl'
   })
 
+  .when('/welcome', {
+    templateUrl: 'partials/users/welcome.jade',
+    controller: 'userNewController',
+    controllerAs: 'userCtrl'
+  })
+
   .when('/login', {
     templateUrl: 'partials/session/login.jade',
     controller: 'sessionLoginController',
