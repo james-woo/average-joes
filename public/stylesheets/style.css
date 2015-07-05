@@ -23,3 +23,8 @@ a {
 .main-logo {
   width: 20%;
 }
+
+.prof-table {
+  width: 300px;
+  margin: 10px auto;
+}
