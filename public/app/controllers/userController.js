@@ -20,7 +20,7 @@ userControllers.controller('userShowController', function($http, $routeParams, U
   })
 });
 
-userControllers.controller('userNewController', function($http, User) {
+userControllers.controller('userNewController', function($http, $location ,User) {
   var vm = this;
   vm.success = "";
 
@@ -37,6 +37,7 @@ userControllers.controller('userNewController', function($http, User) {
     .then(function(data){
       if(data.data.success){
         vm.success = "success!";
+        $location.path("/welcome");
       }
       else{
         vm.success = data.data.message;
