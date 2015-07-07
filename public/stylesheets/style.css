@@ -27,3 +27,7 @@ a {
 .prof-table {
   margin: 10px auto;
 }
+
+.flat-para {
+  display: inline;
+}
