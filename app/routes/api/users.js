@@ -92,8 +92,19 @@ router.post('/:username', function(req, res, next){
         res.status(404).send();
       }
       else{
-        if(req.body.username) {
-          user.username = req.body.username;
+        if(req.body.username || req.body.firstname || req.body.lastname || req.body.email) {
+          if(req.body.username != ''){
+            user.username = req.body.username;
+          }
+          if(req.body.firstname != ''){
+            user.firstname = req.body.firstname;
+          }
+          if(req.body.lastname != ''){
+            user.lastname = req.body.lastname;
+          }
+          if(req.body.email != ''){
+            user.email = req.body.email;
+          }
         }
         user.save(function(err){
           if(err){
