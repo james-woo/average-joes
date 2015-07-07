@@ -60,7 +60,10 @@ userControllers.controller('userEditController', function($http, User, $routePar
   });
 
   vm.updatedUser = {
-    username: ""
+    username: "",
+    firstname: "",
+    lastname: "",
+    email: ""
   };
 
   vm.submit = function(){
