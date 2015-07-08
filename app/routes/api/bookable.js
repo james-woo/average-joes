@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Bookable = require('../../../app/models/bookable')
+var BookableType = require('../../../app/models/bookableType')
 var TimeSlot = require('../../../app/models/timeSlot')
 
 // create timeSlots for each day and link them to the bookable
@@ -21,6 +22,7 @@ var createTimeSlots = function(){
 router.get('/', function(req, res, next){
   Bookable.find({})
   .populate("timeSlots")
+  .populate("bookableType")
   .exec(function(err, bookables){
     if(err){
       res.send(err);
@@ -34,18 +36,29 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-
-  var bookable = new Bookable({
-    name: req.body.bookableName,
-    timeSlots: createTimeSlots()
-  });
-
-  bookable.save(function(err){
+  // find the bookable type given in the request body
+  BookableType.findOne({name: req.body.bookableTypeName}, function(err, bt){
     if(err){
       res.send(err);
     }
+    else if(bt){
+      var bookable = new Bookable({
+        name: req.body.bookableName,
+        timeSlots: createTimeSlots(),
+        bookableType: bt
+      });
+
+      bookable.save(function(err){
+        if(err){
+          res.send(err);
+        }
+        else{
+          res.status(200).send();
+        }
+      });
+    }
     else{
-      res.status(200).send();
+      res.status(404).json({error: "Bookable Type not found"});
     }
   });
 });
