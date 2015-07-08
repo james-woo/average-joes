@@ -16,7 +16,10 @@ sessionControllers.controller('sessionLoginController', function($http, $locatio
       $location.path("/");
     })
     .error(function(data, status, headers, config){
-      if(status == 401){
+      if(status == 403){
+        vm.message = "Please verify your account, a verification link has been resent to your email.";
+      }
+      else if(status == 401){
         vm.message = "The username and password did not match. Please try again.";
       }
       else{
