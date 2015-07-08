@@ -9,8 +9,12 @@ var userSchema = mongoose.Schema({
   firstname: String,
   lastname: String,
   key: String,
+<<<<<<< HEAD
   confirmed: String,
   permissions: String
+=======
+  confirmed: String
+>>>>>>> Add account verification for users
 });
 
 userSchema.plugin(passportLocalMongoose);

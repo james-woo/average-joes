@@ -124,6 +124,25 @@ router.post('/:email', function(req, res){
   });
 });
 
+router.post('/:email', function(req, res){
+  var email = req.body.email;
+  var rand = req.body.key;
+  host=req.get('host');
+  link="http://"+req.get('host')+"/verify/"+rand;
+  var mailOptions = {
+  to : email,
+  subject : "Please confirm your Email account",
+  html : "Hello "+req.body.firstname+",<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
+  }
+  transporter.sendMail(mailOptions, function(error){
+    if(error){
+      console.log(error);
+    } else{
+      res.json({success: true});
+    }
+  });
+});
+
 router.delete('/:username', function(req, res, next){
   var username = req.params.username;
 

@@ -22,6 +22,7 @@ userControllers.controller('userShowController', function($http, $routeParams, U
 
 userControllers.controller('userNewController', function($http, $location, User) {
   var vm = this;
+
   vm.success = ""; 
 
   vm.user = {
@@ -36,6 +37,7 @@ userControllers.controller('userNewController', function($http, $location, User)
   };
 
   vm.submit = function(){
+    User.confirmAccount(vm.user.email, vm.user)
     User.create(vm.user)
     .then(function(data){
       if(data.data.success){
