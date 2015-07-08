@@ -2,6 +2,15 @@ var express = require('express');
 var router = express.Router();
 var User = require('../../../app/models/user')
 var passport = require('passport');
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'averagejoesmembers@gmail.com',
+    pass: 'mysupersecretpassword'
+  }
+});
 
 // users index page
 router.get('/', function(req, res, next){
@@ -33,15 +42,33 @@ router.get('/:username', function(req, res, next){
 
 // create new user and authenticate with passport
 router.post('/', function(req, res, next){
-  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email}), req.body.password, function(err, user){
-
+  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, key: req.body.key, confirmed: "false"}), req.body.password, function(err, user){
     if(err){
       res.json(err);
     }
     else{
       passport.authenticate('local')(req, res, function(){
-        res.json({success: true});
+      res.json({success: true});
       });
+    }
+  });
+});
+
+router.post('/:email', function(req, res){
+  var email = req.body.email;
+  var rand = req.body.key;
+  host=req.get('host');
+  link="http://"+req.get('host')+"/verify/"+rand;
+  var mailOptions = {
+  to : email,
+  subject : "Please confirm your Email account",
+  html : "Hello "+req.body.firstname+",<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
+  }
+  transporter.sendMail(mailOptions, function(error){
+    if(error){
+      console.log(error);
+    } else{
+      res.json({success: true});
     }
   });
 });
