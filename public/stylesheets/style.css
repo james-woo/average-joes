@@ -31,3 +31,8 @@ a {
 .flat-para {
   display: inline;
 }
+
+.marg-button-lr {
+  margin-left: 15px;
+  margin-right: 15px;
+}

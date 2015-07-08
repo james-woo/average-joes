@@ -18,7 +18,7 @@ div.text-center
       td {{userCtrl.user.email}}
 
   div(ng-controller="userDeleteController as userDeleteCtrl")
-    button(ng-click="userDeleteCtrl.delete(userCtrl.user)").btn.btn-default.
+    a(ng-href="{{userCtrl.userEditUrl}}" role="button").btn.btn-default.marg-button-lr.
+      Edit
+    button(ng-click="userDeleteCtrl.delete(userCtrl.user)").btn.btn-default.marg-button-lr.
       Delete
-    a(ng-href="{{userCtrl.userEditUrl}}" role="button").btn.btn-default.
-      Edit Profile
