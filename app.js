@@ -12,6 +12,8 @@ var app = express();
 
 var sessionApiRoutes = require('./app/routes/api/session');
 var usersApiRoutes = require('./app/routes/api/users');
+var bookableApiRoutes = require('./app/routes/api/bookable');
+var bookableTypeApiRoutes = require('./app/routes/api/bookableType');
 var viewRoutes = require('./app/routes/viewRoutes');
 var indexRoute = require('./app/routes/indexRoute');
 
@@ -42,6 +44,8 @@ app.use('/', indexRoute);
 app.use('/partials', viewRoutes);
 app.use('/api/session', sessionApiRoutes);
 app.use('/api/users', usersApiRoutes);
+app.use('/api/bookables', bookableApiRoutes);
+app.use('/api/bookabletypes', bookableTypeApiRoutes);
 app.use('*', indexRoute);
 
 var User = require('./app/models/user');
