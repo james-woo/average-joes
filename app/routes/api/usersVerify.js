@@ -9,14 +9,18 @@ router.get('/:uid',function(req,res){
   User.findOne({key: key}, function(err, user){
   if((req.protocol+"://"+req.get('host'))==("http://"+host)){
     if(err){
-      res.end("<h1>Bad Request</h1>");
+      res.redirect('/sorry');
     } else{
+      if(user == null){
+        res.redirect("/sorry");
+        return;
+      }
       user.confirmed = "true";
       user.save();
       res.render('layout');
     }
   } else{
-    res.end("<h1>Request is from unknown source</h1>");
+    res.redirect("/sorry");
   }
   });
 });
