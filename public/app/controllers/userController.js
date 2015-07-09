@@ -39,7 +39,7 @@ userControllers.controller('userNewController', function($http, $location, User)
     .then(function(data){
       if(data.data.success){
         vm.user.key = data.data.key;
-        User.confirmAccount(vm.user.email, vm.user)
+        User.sendConfirmationEmail(vm.user.email, vm.user)
         vm.success = "success!";
         $location.path("/confirm");
       }
