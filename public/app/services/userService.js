@@ -10,7 +10,7 @@ angular.module('userService', [])
     return $http.get('/api/users/' + username);
   };
 
-  factory.confirmAccount = function(email, user){
+  factory.sendConfirmationEmail = function(email, user){
     return $http.post('api/users/' + email, user)
   };
 
