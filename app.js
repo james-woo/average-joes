@@ -15,7 +15,10 @@ var usersApiRoutes = require('./app/routes/api/users');
 var bookableApiRoutes = require('./app/routes/api/bookable');
 var bookableTypeApiRoutes = require('./app/routes/api/bookableType');
 var usersVerifyRoutes = require('./app/routes/api/usersVerify');
+<<<<<<< HEAD
 var usersPasswordResetRoutes = require('./app/routes/api/usersPasswordReset');
+=======
+>>>>>>> Rename routing variables
 var viewRoutes = require('./app/routes/viewRoutes');
 var indexRoute = require('./app/routes/indexRoute');
 
@@ -48,8 +51,12 @@ app.use('/api/session', sessionApiRoutes);
 app.use('/api/users', usersApiRoutes);
 app.use('/api/bookables', bookableApiRoutes);
 app.use('/api/bookabletypes', bookableTypeApiRoutes);
+<<<<<<< HEAD
 app.use('/api/verify', usersVerifyRoutes);
 app.use('/api/reset', usersPasswordResetRoutes);
+=======
+app.use('/api/verify', usersVerifyRoutes); 
+>>>>>>> Rename routing variables
 app.use('*', indexRoute);
 
 var User = require('./app/models/user');
