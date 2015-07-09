@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../../../app/models/user')
 var passport = require('passport');
 var nodemailer = require('nodemailer');
+var crypto = require('crypto');
 
 var transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -42,27 +43,29 @@ router.get('/:username', function(req, res, next){
 
 // create new user and authenticate with passport
 router.post('/', function(req, res, next){
-  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, key: req.body.key, confirmed: "false"}), req.body.password, function(err, user){
+  var hash = crypto.randomBytes(20).toString('hex');
+  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, key: hash, confirmed: "false"}), req.body.password, function(err, user){
     if(err){
       res.json(err);
     }
     else{
       passport.authenticate('local')(req, res, function(){
-      res.json({success: true});
+      res.status(200).json({success: true, key: hash})
+      //res.json({success: true});
       });
     }
   });
 });
-
+// send confirmation email to user with key
 router.post('/:email', function(req, res){
   var email = req.body.email;
-  var rand = req.body.key;
+  var key = req.body.key;
   host=req.get('host');
-  link="http://"+req.get('host')+"/verify/"+rand;
+  link="http://"+req.get('host')+"/api/verify/"+key;
   var mailOptions = {
-  to : email,
-  subject : "Please confirm your Email account",
-  html : "Hello "+req.body.firstname+",<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
+    to : email,
+    subject : "Please confirm your Email account",
+    html : "Hello "+req.body.firstname+",<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
   }
   transporter.sendMail(mailOptions, function(error){
     if(error){

@@ -14,7 +14,7 @@ var sessionApiRoutes = require('./app/routes/api/session');
 var usersApiRoutes = require('./app/routes/api/users');
 var bookableApiRoutes = require('./app/routes/api/bookable');
 var bookableTypeApiRoutes = require('./app/routes/api/bookableType');
-var usersVerify = require('./app/routes/api/usersVerify');
+var usersVerifyRoutes = require('./app/routes/api/usersVerify');
 var viewRoutes = require('./app/routes/viewRoutes');
 var indexRoute = require('./app/routes/indexRoute');
 
@@ -47,7 +47,7 @@ app.use('/api/session', sessionApiRoutes);
 app.use('/api/users', usersApiRoutes);
 app.use('/api/bookables', bookableApiRoutes);
 app.use('/api/bookabletypes', bookableTypeApiRoutes);
-app.use('/verify', usersVerify); 
+app.use('/api/verify', usersVerifyRoutes); 
 app.use('*', indexRoute);
 
 var User = require('./app/models/user');
