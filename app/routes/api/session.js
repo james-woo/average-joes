@@ -17,9 +17,9 @@ var transporter = nodemailer.createTransport({
 router.post('/login', passport.authenticate('local'), function(req, res){
   if(req.user.confirmed == "false"){
     var email = req.user.email;
-    var rand = req.user.key;
+    var key = req.user.key;
     host=req.get('host');
-    link="http://"+req.get('host')+"/verify/"+rand;
+    link="http://"+req.get('host')+"/api/verify/"+key;
     var mailOptions = {
       to : email,
       subject : "Please confirm your Email account",

@@ -22,8 +22,7 @@ userControllers.controller('userShowController', function($http, $routeParams, U
 
 userControllers.controller('userNewController', function($http, $location, User) {
   var vm = this;
-  vm.success = "";
-  var rand = ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4);
+  vm.success = ""; 
 
   vm.user = {
     username: "",
@@ -31,15 +30,16 @@ userControllers.controller('userNewController', function($http, $location, User)
     firstname: "",
     lastname: "",
     email: "",
-    key: rand,
+    key: "",
     confirmed: "false"
   };
 
   vm.submit = function(){
-    User.confirmAccount(vm.user.email, vm.user)
     User.create(vm.user)
     .then(function(data){
       if(data.data.success){
+        vm.user.key = data.data.key;
+        User.confirmAccount(vm.user.email, vm.user)
         vm.success = "success!";
         $location.path("/confirm");
       }
