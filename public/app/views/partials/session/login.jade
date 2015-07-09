@@ -12,4 +12,5 @@ div.text-center
       Login
 
   div(ng-model="sessionCtrl.message")
-    {{sessionCtrl.message}}
+    a(href="http://localhost:3000/api/verify/resend/{{sessionCtrl.user.key}}", target='_blank')
+      {{sessionCtrl.user.errormessage}}
