@@ -86,14 +86,20 @@ router.get('/:username', function(req, res, next){
 // create new user and authenticate with passport
 router.post('/', function(req, res, next){
   var hash = crypto.randomBytes(20).toString('hex');
-  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, key: hash, confirmed: "false", permissions: "user"}), req.body.password, function(err, user){
+  User.register(new User({
+    username: req.body.username, 
+    firstname: req.body.firstname, 
+    lastname: req.body.lastname, 
+    email: req.body.email, 
+    key: hash, 
+    confirmed: "false", 
+    permissions: "user"}), req.body.password, function(err, user){
     if(err){
       res.json(err);
     }
     else{
       passport.authenticate('local')(req, res, function(){
-      res.status(200).json({success: true, key: hash})
-      //res.json({success: true});
+        res.status(200).json({success: true, key: hash})
       });
     }
   });
@@ -128,7 +134,7 @@ router.delete('/:username', function(req, res, next){
       res.send(err);
     }
     else{
-      if(!user){
+      if(user == null){
         // the given user does not exist
         res.status(404).send();
       }
@@ -159,7 +165,7 @@ router.post('/:username', function(req, res, next){
       res.send(err);
     }
     else{
-      if(!user){
+      if(user == null){
         // the given user does not exist
         res.status(404).send();
       }
