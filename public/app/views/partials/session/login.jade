@@ -12,7 +12,6 @@ div.text-center
       Login
     a(href="/forgot/") Forgot?
 
-
   div(ng-model="sessionCtrl.message")
     a(href="/api/verify/resend/{{sessionCtrl.user.key}}", target='_blank')
       {{sessionCtrl.user.errormessage}}
