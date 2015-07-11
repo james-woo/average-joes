@@ -59,6 +59,18 @@ angular.module('app.routes', ['ngRoute'])
     controllerAs: 'sessionCtrl'
   })
 
+  .when('/forgot', {
+    templateUrl: 'partials/session/forgot.jade',
+    controller: 'sessionForgotController',
+    controllerAs: 'sessionCtrl'
+  })
+
+  .when('/reset', {
+    templateUrl: 'partials/session/reset.jade',
+    controller: 'sessionResetController',
+    controllerAs: 'sessionCtrl'
+  })
+
   .otherwise({
     redirectTo: '/'
   });

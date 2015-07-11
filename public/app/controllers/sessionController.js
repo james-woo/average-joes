@@ -44,3 +44,21 @@ sessionControllers.controller('sessionLogoutController', function($http, Session
     });
   };
 });
+
+sessionControllers.controller('sessionForgotController', function($http, Session, CurrentUser) {
+  var vm = this;
+  vm.message = "";
+  vm.email = "";
+
+  vm.forgot = function() {
+    Session.forgot({email: vm.email})
+    .success(function(data, status, headers, config){
+      console.log("sent email");
+      vm.message = "Sent password reset link";
+    })
+    .error(function(data, status, headers, config){
+      vm.message = "Sorry, we couldn't send a reset request: " + status;
+    });
+  };
+});
+
