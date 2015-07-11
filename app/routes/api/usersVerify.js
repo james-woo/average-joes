@@ -20,7 +20,7 @@ router.get('/:uid',function(req,res){
     if(err){
       res.redirect('/sorry');
     } else{
-      if(user == null){
+      if(!user){
         res.redirect("/sorry");
         return;
       }
