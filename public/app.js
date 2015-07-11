@@ -7,5 +7,6 @@ angular.module('averageApp', [
     'userService',
     'sessionService',
     'bookingService',
+    'bookableService',
     'app.routes'
 ]);
