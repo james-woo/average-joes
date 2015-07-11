@@ -1,6 +1,5 @@
 var mongoose = require('../../app/models/mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
-var crypto = require('crypto');
 
 var userSchema = mongoose.Schema({
   username: {type: String, index: {unique: true}},
