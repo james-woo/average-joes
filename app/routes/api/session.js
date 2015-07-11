@@ -35,7 +35,7 @@ router.post('/forgot', function(req, res){
     if(err){
       console.log(err);
     }
-    if(user == null) {
+    if(!user) {
       console.log("cannot find email");
       res.status(404).json({success: false});
     }
