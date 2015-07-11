@@ -35,8 +35,20 @@ angular.module('app.routes', ['ngRoute'])
     controllerAs: 'userCtrl'
   })
 
-  .when('/welcome', {
-    templateUrl: 'partials/users/welcome.jade',
+  .when('/confirm', {
+    templateUrl: 'partials/users/confirm.jade',
+    controller: 'userNewController',
+    controllerAs: 'userCtrl'
+  })
+
+  .when('/verify', {
+    templateUrl: 'partials/users/verify.jade',
+    controller: 'userNewController',
+    controllerAs: 'userCtrl'
+  })
+
+  .when('/sorry', {
+    templateUrl: 'partials/users/sorry.jade',
     controller: 'userNewController',
     controllerAs: 'userCtrl'
   })
@@ -44,6 +56,18 @@ angular.module('app.routes', ['ngRoute'])
   .when('/login', {
     templateUrl: 'partials/session/login.jade',
     controller: 'sessionLoginController',
+    controllerAs: 'sessionCtrl'
+  })
+
+  .when('/forgot', {
+    templateUrl: 'partials/session/forgot.jade',
+    controller: 'sessionForgotController',
+    controllerAs: 'sessionCtrl'
+  })
+
+  .when('/reset', {
+    templateUrl: 'partials/session/reset.jade',
+    controller: 'sessionResetController',
     controllerAs: 'sessionCtrl'
   })
 

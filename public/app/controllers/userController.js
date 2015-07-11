@@ -20,24 +20,30 @@ userControllers.controller('userShowController', function($http, $routeParams, U
   })
 });
 
-userControllers.controller('userNewController', function($http, $location ,User) {
+userControllers.controller('userNewController', function($http, $location, User) {
   var vm = this;
-  vm.success = "";
+
+  vm.success = ""; 
 
   vm.user = {
     username: "",
     password: "",
     firstname: "",
     lastname: "",
-    email: ""
+    email: "",
+    key: "",
+    confirmed: "false",
+    permissions: "user"
   };
 
   vm.submit = function(){
     User.create(vm.user)
     .then(function(data){
       if(data.data.success){
+        vm.user.key = data.data.key;
+        User.sendConfirmationEmail(vm.user.email, vm.user)
         vm.success = "success!";
-        $location.path("/welcome");
+        $location.path("/confirm");
       }
       else{
         vm.success = data.data.message;
