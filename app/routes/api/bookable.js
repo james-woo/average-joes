@@ -37,15 +37,15 @@ router.get('/', function(req, res, next){
 
 router.post('/', function(req, res, next){
   // find the bookable type given in the request body
-  BookableType.findOne({name: req.body.bookableTypeName}, function(err, bt){
+  BookableType.findOne({name: req.body.bookableTypeName}, function(err, bookableType){
     if(err){
       res.send(err);
     }
-    else if(bt){
+    else if(bookableType){
       var bookable = new Bookable({
         name: req.body.bookableName,
         timeSlots: createTimeSlots(),
-        bookableType: bt
+        bookableType: bookableType
       });
 
       bookable.save(function(err){
