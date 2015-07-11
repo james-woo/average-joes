@@ -23,3 +23,16 @@ a {
 .main-logo {
   width: 20%;
 }
+
+.prof-table {
+  margin: 10px auto;
+}
+
+.flat-para {
+  display: inline;
+}
+
+.marg-button-lr {
+  margin-left: 15px;
+  margin-right: 15px;
+}
