@@ -14,11 +14,11 @@ var transporter = nodemailer.createTransport({
 });
 
 //create confirmed test user acount
-User.findOne({ username: 'joetester' }, function (err, doc) {
+User.findOne({ username: 'joetester' }, function (err, user) {
   if(err){
     console.log(err);
   }
-  if(doc == null){
+  if(!user){
     User.register(new User({ 
       username: 'joetester', 
       firstname: 'Joe',
@@ -35,11 +35,11 @@ User.findOne({ username: 'joetester' }, function (err, doc) {
 });
 
 //create admin acount
-User.findOne({ username: 'admin' }, function (err, doc) {
+User.findOne({ username: 'admin' }, function (err, user) {
   if(err){
     console.log(err);
   }
-  if(doc == null){
+  if(!user){
     User.register(new User({ 
       username: 'admin', 
       firstname: 'admin',
@@ -153,7 +153,7 @@ router.delete('/:username', function(req, res, next){
       res.send(err);
     }
     else{
-      if(user == null){
+      if(!user){
         // the given user does not exist
         res.status(404).send();
       }
@@ -184,7 +184,7 @@ router.post('/:username', function(req, res, next){
       res.send(err);
     }
     else{
-      if(user == null){
+      if(!user){
         // the given user does not exist
         res.status(404).send();
       }
