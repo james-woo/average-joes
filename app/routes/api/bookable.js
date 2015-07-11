@@ -19,6 +19,29 @@ var createTimeSlots = function(){
   return timeSlotIds;
 }
 
+router.get('/by_type/:typeName', function(req, res, next){
+  BookableType.findOne({name: req.params.typeName}, function(err, bookableType){
+    if(err){
+      res.send(err);
+    }
+    else{
+      if(bookableType) {
+        Bookable.find({bookableType: bookableType._id}, function(err, bookables){
+          if(err){
+            res.send(err);
+          }
+          else{
+            res.status(200).json({bookables: bookables});
+          }
+        });
+      }
+      else{
+        res.status(404).json({error: "bookableType not found"});
+      }
+    }
+  });
+});
+
 router.get('/', function(req, res, next){
   Bookable.find({})
   .populate("timeSlots")
