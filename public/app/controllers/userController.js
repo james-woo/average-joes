@@ -31,7 +31,8 @@ userControllers.controller('userNewController', function($http, $location, User)
     lastname: "",
     email: "",
     key: "",
-    confirmed: "false"
+    confirmed: "false",
+    permissions: "user"
   };
 
   vm.submit = function(){
