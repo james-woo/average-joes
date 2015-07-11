@@ -13,6 +13,48 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+//create confirmed test user acount
+User.findOne({ username: 'joetester' }, function (err, doc) {
+  if(err){
+    console.log(err);
+  }
+  if(doc == null){
+    User.register(new User({ 
+      username: 'joetester', 
+      firstname: 'Joe',
+      lastname: 'Smith',
+      email: 'averagejoe@averageemail.com', 
+      confirmed: 'true',
+      permissions: 'user'
+    }), 'joetester', function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  }
+});
+
+//create admin acount
+User.findOne({ username: 'admin' }, function (err, doc) {
+  if(err){
+    console.log(err);
+  }
+  if(doc == null){
+    User.register(new User({ 
+      username: 'admin', 
+      firstname: 'admin',
+      lastname: 'admin',
+      email: 'averagejoesmembers@gmail.com', 
+      confirmed: 'true',
+      permissions: 'admin'
+    }), 'admin', function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  }
+});
+
 // users index page
 router.get('/', function(req, res, next){
   User.find({}, function(err, users){
@@ -44,7 +86,7 @@ router.get('/:username', function(req, res, next){
 // create new user and authenticate with passport
 router.post('/', function(req, res, next){
   var hash = crypto.randomBytes(20).toString('hex');
-  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, key: hash, confirmed: "false"}), req.body.password, function(err, user){
+  User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, key: hash, confirmed: "false", permissions: "user"}), req.body.password, function(err, user){
     if(err){
       res.json(err);
     }
