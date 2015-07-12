@@ -13,6 +13,7 @@ var app = express();
 var sessionApiRoutes = require('./app/routes/api/session');
 var usersApiRoutes = require('./app/routes/api/users');
 var bookableApiRoutes = require('./app/routes/api/bookable');
+var bookingApiRoutes = require('./app/routes/api/booking');
 var bookableTypeApiRoutes = require('./app/routes/api/bookableType');
 var usersVerifyRoutes = require('./app/routes/api/usersVerify');
 var usersPasswordResetRoutes = require('./app/routes/api/usersPasswordReset');
@@ -50,6 +51,7 @@ app.use('/api/bookables', bookableApiRoutes);
 app.use('/api/bookabletypes', bookableTypeApiRoutes);
 app.use('/api/reset', usersPasswordResetRoutes);
 app.use('/api/verify', usersVerifyRoutes); 
+app.use('/api/bookings', bookingApiRoutes);
 app.use('*', indexRoute);
 
 var User = require('./app/models/user');

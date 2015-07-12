@@ -11,6 +11,18 @@ angular.module('app.routes', ['ngRoute'])
     controllerAs: 'homeCtrl'
   })
 
+  .when('/facilities/:facilityName/:date', {
+    templateUrl: 'partials/facilities/book.jade',
+    controller: 'bookingNewController',
+    controllerAs: 'bookingCtrl'
+  })
+
+  .when('/facilities/:facilityName', {
+    templateUrl: 'partials/facilities/book.jade',
+    controller: 'bookingNewController',
+    controllerAs: 'bookingCtrl'
+  })
+
   .when('/users', {
     templateUrl: 'partials/users/index.jade',
     controller: 'userIndexController',
