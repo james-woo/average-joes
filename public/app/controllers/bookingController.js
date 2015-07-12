@@ -18,7 +18,6 @@ bookingControllers.controller('bookingNewController', function($http, Booking, B
     timeSlotIds: []
   };
 
-
   Bookable.getByTypeName($routeParams.facilityName)
   .success(function(data, status, headers, config){
     vm.bookables = data.bookables;
