@@ -14,8 +14,8 @@ bookingControllers.controller('bookingNewController', function($http, Booking, B
   }
 
   vm.booking = {
-    date: "",
-    timeSlotIds: []
+    date: vm.date.format("YYYY-M-D"),
+    timeSlots: []
   };
 
   Bookable.getByTypeName($routeParams.facilityName)
@@ -37,4 +37,15 @@ bookingControllers.controller('bookingNewController', function($http, Booking, B
       vm.notice = "Booking failed: " + data.error;
     });
   };
-});
+
+  // Add or remove timeSlot from booking.timeSlots
+  vm.toggleSelected = function(timeSlot) {
+    var index = vm.booking.timeSlots.indexOf(timeSlot);
+    if(index >= 0){
+      vm.booking.timeSlots.splice(index, 1);
+    }
+    else{
+      vm.booking.timeSlots.push(timeSlot);
+    }
+  };
+})
