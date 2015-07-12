@@ -12,7 +12,7 @@ var timeLimitExceeded = function(timeSlots){
   timeSlots.sort(function(a,b){
     return a.hourOfDay - b.hourOfDay;
   });
-  return timeSlots[timeSlots.length-1].hourOfDay - timeSlots[0].hourOfDay > MAX_BOOKING_HOURS;
+  return timeSlots[timeSlots.length-1].hourOfDay - timeSlots[0].hourOfDay > MAX_BOOKING_HOURS - 1;
 }
 
 router.get('/', function(req, res, next){
@@ -31,12 +31,12 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-  var timeSlotIds = req.body.timeSlotIds;
+  var timeSlots = req.body.timeSlots;
   var date = moment(req.body.date, "YYYY-M-D");
 
   TimeSlot.find({
     '_id': {
-      $in: timeSlotIds
+      $in: timeSlots
     }
   }, function(err, timeSlots){
 
@@ -46,7 +46,7 @@ router.post('/', function(req, res, next){
     else{
       var booking = new Booking({
         date: date,
-        timeSlots: timeSlotIds
+        timeSlots: timeSlots
       });
 
       booking.save(function(err){
