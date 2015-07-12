@@ -26,7 +26,10 @@ router.get('/by_type/:typeName', function(req, res, next){
     }
     else{
       if(bookableType) {
-        Bookable.find({bookableType: bookableType._id}, function(err, bookables){
+        Bookable.find({bookableType: bookableType._id})
+        .populate("timeSlots")
+        .populate("bookableType")
+        .exec(function(err, bookables){
           if(err){
             res.send(err);
           }
